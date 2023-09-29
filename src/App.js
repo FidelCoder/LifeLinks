@@ -1,63 +1,97 @@
-import "@mui/material";
-import "react-icons";
-import "react-icons/bi";
-import "react-icons/md";
-import "react-icons/bs";
-import "react-router-dom";
-import { CssBaseline } from "@mui/material";
-import { ThemeProvider } from "@mui/material/styles";
+import React, { useContext } from "react";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
+import OrganizationRegister from "./pages/register/OrganizationRegister";
+import DAORegistration from "./pages/register/DAORegistration";
+import DAOLogin from "./pages/login/DAOLogin";
+import OrganizationLogin from "./pages/login/OrganizationLogin";
 import {
-  BrowserRouter,
+  createBrowserRouter,
+  RouterProvider,
   Route,
-  Routes,
+  Outlet,
+  Navigate,
 } from "react-router-dom";
-import theme from "./theme";
-
-import PostView from "./components/views/PostView";
-import CreatePostView from "./components/views/CreatePostView";
-import ProfileView from "./components/views/ProfileView";
-import LoginView from "./components/views/LoginView";
-import SignupView from "./components/views/SignupView";
-import ExploreView from "./components/views/ExploreView";
-import PrivateRoute from "./components/PrivateRoute";
-import SearchView from "./components/views/SearchView";
-import MessengerView from "./components/views/MessengerView";
-// import { initiateSocketConnection } from "./helpers/socketHelper"; // commented out
-import { useEffect } from "react";
+import Navbar from "./components/navbar/Navbar";
+import LeftBar from "./components/leftBar/LeftBar";
+import RightBar from "./components/rightBar/RightBar";
+import Home from "./pages/home/Home";
+import Profile from "./pages/profile/Profile";
+import "./style.scss";
+import { DarkModeContext } from "./context/darkModeContext";
+import { AuthContext } from "./context/authContext";
 
 function App() {
-  // initiateSocketConnection(); // commented out
+  const { currentUser } = useContext(AuthContext);
+  const { darkMode } = useContext(DarkModeContext);
+
+  const Layout = () => (
+    <div className={`theme-${darkMode ? "dark" : "light"}`}>
+      <Navbar />
+      <div style={{ display: "flex" }}>
+        <LeftBar />
+        <div style={{ flex: 6 }}>
+          <Outlet />
+        </div>
+        <RightBar />
+      </div>
+    </div>
+  );
+
+  const ProtectedRoute = ({ children }) => {
+    if (!currentUser) {
+      return <Navigate to="/login" />;
+    }
+    return children;
+  };
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <ProtectedRoute>
+          <Layout />
+        </ProtectedRoute>
+      ),
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/profile/:id",
+          element: <Profile />,
+        },
+      ],
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+    {
+      path: "/organizationRegister",
+      element: <OrganizationRegister />
+    },
+    {
+      path: "/orglogin",
+      element: <OrganizationLogin /> 
+    },
+    {
+      path: "/daoReg",
+      element: <DAORegistration />
+    },
+    {
+      path: "/daoLogin",
+      element: <DAOLogin />
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+  ]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <CssBaseline />
-        <Routes>
-          <Route path="/" element={<ExploreView />} />
-          <Route path="/posts/:id" element={<PostView />} />
-          <Route
-            path="/posts/create"
-            element={
-              <PrivateRoute>
-                <CreatePostView />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/messenger"
-            element={
-              <PrivateRoute>
-                <MessengerView />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/search" element={<SearchView />} />
-          <Route path="/users/:id" element={<ProfileView />} />
-          <Route path="/login" element={<LoginView />} />
-          <Route path="/signup" element={<SignupView />} />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+    <RouterProvider router={router} />
   );
 }
 

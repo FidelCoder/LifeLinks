@@ -20,6 +20,7 @@ import Profile from "./pages/profile/Profile";
 import "./style.scss";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
+import Organization from "./pages/Organization/Organization";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -71,6 +72,10 @@ function App() {
     {
       path: "/organizationRegister",
       element: <OrganizationRegister />
+    },
+    {
+      path: "/orgDashboard",
+      element: <Organization />
     },
     {
       path: "/orglogin",

@@ -1,4 +1,5 @@
 import "./leftBar.scss";
+import { Link } from "react-router-dom"; // Import Link
 import Friends from "../../assets/1.png";
 import Groups from "../../assets/2.png";
 import Market from "../../assets/3.png";
@@ -16,7 +17,6 @@ import { AuthContext } from "../../context/authContext";
 import { useContext } from "react";
 
 const LeftBar = () => {
-
   const { currentUser } = useContext(AuthContext);
 
   return (
@@ -24,31 +24,28 @@ const LeftBar = () => {
       <div className="container">
         <div className="menu">
           <div className="user">
-            <img
-              src={currentUser.profilePic}
-              alt=""
-            />
+            <img src={currentUser.profilePic} alt="" />
             <span>{currentUser.name}</span>
           </div>
           <div className="item">
             <img src={Friends} alt="" />
-            <span>Friends</span>
+            <Link to="/friends"><span>Friends</span></Link>
           </div>
           <div className="item">
             <img src={Groups} alt="" />
-            <span>Groups</span>
+            <Link to="/groups"><span>Organization</span></Link>
           </div>
           <div className="item">
             <img src={Market} alt="" />
-            <span>Marketplace</span>
+            <Link to="/marketplace"><span>Events</span></Link>
           </div>
           <div className="item">
             <img src={Watch} alt="" />
-            <span>Watch</span>
+            <Link to="/watch"><span>Watch</span></Link>
           </div>
           <div className="item">
             <img src={Memories} alt="" />
-            <span>Memories</span>
+            <Link to="/memories"><span>Memories</span></Link>
           </div>
         </div>
         <hr />
@@ -56,23 +53,23 @@ const LeftBar = () => {
           <span>Your shortcuts</span>
           <div className="item">
             <img src={Events} alt="" />
-            <span>Events</span>
+            <Link to="/events"><span>Events</span></Link>
           </div>
           <div className="item">
             <img src={Gaming} alt="" />
-            <span>Gaming</span>
+            <Link to="/gaming"><span>Gaming</span></Link>
           </div>
           <div className="item">
             <img src={Gallery} alt="" />
-            <span>Gallery</span>
+            <Link to="/gallery"><span>Gallery</span></Link>
           </div>
           <div className="item">
             <img src={Videos} alt="" />
-            <span>Videos</span>
+            <Link to="/videos"><span>Videos</span></Link>
           </div>
           <div className="item">
             <img src={Messages} alt="" />
-            <span>Messages</span>
+            <Link to="/messages"><span>Messages</span></Link>
           </div>
         </div>
         <hr />
@@ -80,15 +77,15 @@ const LeftBar = () => {
           <span>Others</span>
           <div className="item">
             <img src={Fund} alt="" />
-            <span>Fundraiser</span>
+            <Link to="/fundraiser"><span>Fundraiser</span></Link>
           </div>
           <div className="item">
             <img src={Tutorials} alt="" />
-            <span>Tutorials</span>
+            <Link to="/tutorials"><span>Tutorials</span></Link>
           </div>
           <div className="item">
             <img src={Courses} alt="" />
-            <span>Courses</span>
+            <Link to="/courses"><span>Courses</span></Link>
           </div>
         </div>
       </div>

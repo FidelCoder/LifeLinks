@@ -5,6 +5,7 @@
   gap: 10px;
   height: 250px;
   margin-bottom: 30px;
+  overflow-x: auto; // Allow horizontal scrolling for larger screens.
 
   @include mobile {
     height: 50px;
@@ -18,13 +19,13 @@
   }
 
   .story {
-    flex: 1;
+    flex: none;  // This ensures that the stories don't stretch on larger screens.
+    width: 150px; // Adjust the width for larger screens.
     border-radius: 10px;
     overflow: hidden;
     position: relative;
 
     @include mobile {
-      flex: none;
       width: 50px;
       height: 50px;
       border-radius: 50%;

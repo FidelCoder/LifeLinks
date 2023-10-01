@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
+import WalletGenerator from "../wallet"
 
 const Navbar = () => {
   const { toggle, darkMode } = useContext(DarkModeContext);
@@ -25,6 +26,7 @@ const Navbar = () => {
           <span>LifeLinks</span>
         </Link>
         <HomeOutlinedIcon />
+        <WalletGenerator />
         {darkMode ? (
           <WbSunnyOutlinedIcon onClick={toggle} />
         ) : (

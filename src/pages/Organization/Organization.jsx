@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './OrganizationDashboard.scss';
+import Sidebar from './Sidebar';
 
 const OrganizationDashboard = () => {
     const [organization, setOrganization] = useState({});
@@ -36,50 +37,55 @@ const OrganizationDashboard = () => {
     const postAnnouncement = () => {
         // Post announcement to your backend or handle accordingly
         console.log(announcement);
+        alert('Announcement posted successfully!');
     };
 
     return (
-        <div className="organization-dashboard">
+    <div className="organization-dashboard">
+            <Sidebar />
+        <div className="main-content">
             <div className="header">
-                <h2>{organization.name}</h2>
+                <h2>Welcome to {organization.name}</h2>
                 <p>{organization.description}</p>
             </div>
-            <div className="upcoming-events">
-                <h3>Upcoming Events</h3>
-                <ul>
-                    {upcomingEvents.map((event, index) => (
-                        <li key={index}>
-                            <p>{event.name}</p>
-                            <p>{event.date}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="ticket-sales">
-                <h3>Ticket Sales</h3>
-                <div className="chart-placeholder">Chart visualization of sales here (integration with a chart library needed).</div>
-            </div>
-            <div className="ticket-validation-log">
-                <h3>Ticket Validation Log</h3>
-                <ul>
-                    {ticketValidationLog.map((log, index) => (
-                        <li key={index}>
-                            <p>{log.ticketId}</p>
-                            <p>{log.validationDate}</p>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="announcements">
-                <h3>Announcements</h3>
-                <textarea 
-                    value={announcement} 
-                    onChange={(e) => setAnnouncement(e.target.value)} 
-                    placeholder="Type your announcement...">
-                </textarea>
-                <button onClick={postAnnouncement}>Post Announcement</button>
+            <div className="main-content">
+                <section className="upcoming-events">
+                    <h3>Upcoming Events</h3>
+                    <ul>
+                        {upcomingEvents.map((event, index) => (
+                            <li key={index}>
+                                <span className="event-name">{event.name}</span>
+                                <span className="event-date">{event.date}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+                <section className="ticket-sales">
+                    <h3>Ticket Sales</h3>
+                    <div className="chart-placeholder">Chart here...</div>
+                </section>
+                <section className="ticket-validation-log">
+                    <h3>Ticket Validation Log</h3>
+                    <ul>
+                        {ticketValidationLog.map((log, index) => (
+                            <li key={index}>
+                                <span className="ticket-id">{log.ticketId}</span>
+                                <span className="validation-date">{log.validationDate}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+                <section className="announcements">
+                    <h3>Announcements</h3>
+                    <textarea 
+                        value={announcement} 
+                        onChange={(e) => setAnnouncement(e.target.value)} 
+                        placeholder="Type your announcement..."></textarea>
+                    <button onClick={postAnnouncement}>Post Announcement</button>
+                </section>
             </div>
         </div>
+    </div>
     );
 };
 

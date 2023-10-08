@@ -21,6 +21,7 @@ import "./style.scss";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import Organization from "./pages/Organization/Organization";
+import EventsPage from "./pages/Organization/EventsPage";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -80,6 +81,10 @@ function App() {
     {
       path: "/orglogin",
       element: <OrganizationLogin /> 
+    },
+    {
+      path: "/events",
+      element: <EventsPage />
     },
     {
       path: "/daoReg",

@@ -1,7 +1,11 @@
 const express = require('express');
 const app = express();
-// Assuming you're using ripple-lib for Ripple's testnet
-const { Client } = require('ripple-lib'); 
+const cors = require('cors');
+
+const { Client } = require('xrpl'); 
+
+app.use(cors());
+
 
 app.get('/generateWallet', async (req, res) => {
     const api = new Client("wss://s.altnet.rippletest.net:51233");

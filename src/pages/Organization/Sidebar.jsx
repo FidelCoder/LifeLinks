@@ -6,7 +6,7 @@ const Sidebar = () => {
         <div className="sidebar">
             <h4>Menu</h4>
             <ul>
-                <li><a href="#" className="active">Dashboard</a></li>
+                <li><a href="/orgDashboard" className="active">Dashboard</a></li>
                 <li><a href="/events">Events</a></li>
                 <li><a href="#">Ticket Sales</a></li>
                 <li><a href="#">Announcements</a></li>

@@ -8,7 +8,7 @@ const Sidebar = () => {
             <ul>
                 <li><a href="/orgDashboard" className="active">Dashboard</a></li>
                 <li><a href="/events">Events</a></li>
-                <li><a href="#">Ticket Sales</a></li>
+                <li><a href="/payments">Ticket Sales</a></li>
                 <li><a href="#">Announcements</a></li>
                 <li><a href="#">Settings</a></li>
             </ul>

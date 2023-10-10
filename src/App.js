@@ -22,6 +22,7 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
 import Organization from "./pages/Organization/Organization";
 import EventsPage from "./pages/Organization/EventsPage";
+import TicketSalesAndPayments from './pages/Organization/TicketSalesAndPayments'
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -85,6 +86,10 @@ function App() {
     {
       path: "/events",
       element: <EventsPage />
+    },
+    {
+      path: "/payments",
+      element: <TicketSalesAndPayments />
     },
     {
       path: "/daoReg",

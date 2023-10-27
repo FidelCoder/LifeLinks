@@ -26,7 +26,7 @@ const Navbar = () => {
           <span>LifeLinks</span>
         </Link>
         <HomeOutlinedIcon />
-        <WalletGenerator />
+        {/* <WalletGenerator /> */}
         {darkMode ? (
           <WbSunnyOutlinedIcon onClick={toggle} />
         ) : (
